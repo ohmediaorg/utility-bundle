@@ -1,0 +1,7 @@
+services:
+    OHMedia\UtilityBundle\Service\Uniq:
+        ~
+
+    OHMedia\UtilityBundle\Twig\Extension\UtilityExtension:
+        autowire: true
+        tags: ["twig.extension"]
