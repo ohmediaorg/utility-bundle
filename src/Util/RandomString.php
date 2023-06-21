@@ -40,7 +40,7 @@ class RandomString
         do {
             $str = $lowercase[rand(0, $lowercaseMax)];
 
-            for ($i = 0; $i < $length; $i++) {
+            for ($i = 1; $i < $length; $i++) {
                 $str .= $chars[rand(0, $charsMax)];
             }
         } while(!$verify($str));
