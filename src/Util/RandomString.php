@@ -13,12 +13,11 @@ class RandomString
      */
     public static function get(
         int $length,
-        ?Callable $verify = null,
+        ?callable $verify = null,
         bool $caseSensitive = true
-    ): string
-    {
+    ): string {
         if (!$verify) {
-            $verify = function(string $str) {
+            $verify = function (string $str) {
                 return true;
             };
         }

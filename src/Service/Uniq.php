@@ -10,7 +10,7 @@ class Uniq
 
     public function get(int $length = 20, bool $caseSensitive = true): string
     {
-        $uniq = RandomString::get($length, function(string $str) {
+        $uniq = RandomString::get($length, function (string $str) {
             return !isset($this->uniq[$str]);
         }, $caseSensitive);
 
