@@ -3,7 +3,6 @@
 namespace OHMedia\UtilityBundle\Twig\Extension;
 
 use OHMedia\UtilityBundle\Service\Uniq;
-use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
