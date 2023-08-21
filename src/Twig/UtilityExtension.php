@@ -1,6 +1,6 @@
 <?php
 
-namespace OHMedia\UtilityBundle\Twig\Extension;
+namespace OHMedia\UtilityBundle\Twig;
 
 use OHMedia\UtilityBundle\Service\Uniq;
 use Twig\Extension\AbstractExtension;
