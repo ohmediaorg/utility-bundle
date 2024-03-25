@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Symfony UtilityBundle",
     "keywords": ["Utility"],
-    "license": "MIT",
+    "license": "proprietary",
     "authors": [
         {
             "name": "Justin Hoffman",
