@@ -9,11 +9,8 @@ use Twig\TwigFunction;
 
 class UtilityExtension extends AbstractExtension
 {
-    private Uniq $uniqService;
-
-    public function __construct(Uniq $uniqService)
+    public function __construct(private Uniq $uniqService)
     {
-        $this->uniqService = $uniqService;
     }
 
     public function getFilters(): array
