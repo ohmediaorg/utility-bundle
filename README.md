@@ -2,6 +2,21 @@
 
 This bundle offers some common utility that is missing from PHP/Symfony.
 
+# Installation
+
+Update `composer.json` by adding this to the `repositories` array:
+
+```json
+{
+    "type": "vcs",
+    "url": "https://github.com/ohmediaorg/utility-bundle"
+}
+```
+
+Then run `composer require ohmediaorg/utility-bundle:dev-main`.
+
+# Functionality
+
 ## RandomString
 
 This utility offers a static function to generate a random string, with the
