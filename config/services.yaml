@@ -2,6 +2,9 @@ services:
     OHMedia\UtilityBundle\Service\EntityIdentifier:
         autowire: true
 
+    OHMedia\UtilityBundle\Service\EntitySlugger:
+        autowire: true
+
     OHMedia\UtilityBundle\Service\Uniq:
         ~
 
