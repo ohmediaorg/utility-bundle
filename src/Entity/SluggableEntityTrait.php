@@ -9,7 +9,8 @@ trait SluggableEntityTrait
 {
     #[ORM\Column(length: SluggableEntityInterface::SLUG_LENGTH, unique: true)]
     #[Assert\Length(max: SluggableEntityInterface::SLUG_LENGTH)]
-    private ?string $slug = null;
+    #[Assert\Regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/')]
+    protected ?string $slug = null;
 
     public function getSlug(): ?string
     {
