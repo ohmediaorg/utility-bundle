@@ -1,4 +1,7 @@
 services:
+    OHMedia\UtilityBundle\Service\EntityIdentifier:
+        autowire: true
+
     OHMedia\UtilityBundle\Service\Uniq:
         ~
 
