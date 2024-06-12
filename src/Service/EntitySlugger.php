@@ -23,6 +23,12 @@ class EntitySlugger
     {
         $value = implode('-', $values);
 
+        $value = $this->slugger->slug($value);
+
+        $value = strtolower($value);
+
+        $value = trim($value, '-');
+
         $valueLength = strlen($value);
 
         if ($valueLength > SluggableEntityInterface::SLUG_LENGTH) {
@@ -30,7 +36,7 @@ class EntitySlugger
             $valueLength = SluggableEntityInterface::SLUG_LENGTH;
         }
 
-        $slug = $this->slugger->slug($value);
+        $slug = $value;
 
         $i = 1;
         while ($this->slugExists($entity, $slug)) {
