@@ -11,3 +11,21 @@ services:
     OHMedia\UtilityBundle\Twig\UtilityExtension:
         autowire: true
         tags: ["twig.extension"]
+
+    OHMedia\UtilityBundle\Service\Blamer:
+        autowire: true
+        arguments: ["@security.token_storage"]
+
+    OHMedia\UtilityBundle\EventListener\BlamePrePersist:
+        autowire: true
+        tags:
+            -
+                name: 'doctrine.event_listener'
+                event: 'prePersist'
+
+    OHMedia\UtilityBundle\EventListener\BlamePreUpdate:
+        autowire: true
+        tags:
+            -
+                name: 'doctrine.event_listener'
+                event: 'preUpdate'
