@@ -16,6 +16,9 @@ class UtilityExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
+            new TwigFilter('js', [$this, 'js'], [
+                'is_safe' => ['html'],
+            ]),
             new TwigFilter('shuffle', [$this, 'shuffle']),
         ];
     }
@@ -25,6 +28,11 @@ class UtilityExtension extends AbstractExtension
         return [
             new TwigFunction('uniq', [$this, 'uniq']),
         ];
+    }
+
+    public function js(mixed $value): string
+    {
+        return json_encode($value);
     }
 
     public function shuffle(array $array): array
