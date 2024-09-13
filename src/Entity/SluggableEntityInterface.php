@@ -10,5 +10,5 @@ interface SluggableEntityInterface
 
     public function getSlug(): ?string;
 
-    public function setSlug(string $slug): static;
+    public function setSlug(?string $slug): static;
 }

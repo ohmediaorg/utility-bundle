@@ -19,7 +19,7 @@ class EntitySlugger
         $this->slugger = new AsciiSlugger();
     }
 
-    public function setSlug(SluggableEntityInterface $entity, string ...$values): void
+    public function setSlug(SluggableEntityInterface $entity, ?string ...$values): void
     {
         $value = implode('-', $values);
 
