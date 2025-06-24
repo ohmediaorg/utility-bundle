@@ -30,9 +30,7 @@ services:
                 name: 'doctrine.event_listener'
                 event: 'preUpdate'
 
-    Symfony\Component\Form\Extension\Validator\ValidatorTypeGuesser:
-        alias: 'form.type_guesser.validator'
-
     OHMedia\UtilityBundle\Form\Extension\PreserveAttributesExtension:
         autowire: true
         tags: ['form.type_extension']
+        arguments: ['@form.type_guesser.validator']
