@@ -30,7 +30,7 @@ class PreserveAttributesExtension extends AbstractTypeExtension
 
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
-        $dataClass = $form->getParent()->getConfig()->getOption('data_class');
+        $dataClass = $form->getParent()->getConfig()->getDataClass();
         $property = $form->getName();
 
         if (!$dataClass || !class_exists($dataClass)) {
