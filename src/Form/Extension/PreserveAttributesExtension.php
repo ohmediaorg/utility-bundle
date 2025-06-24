@@ -36,10 +36,6 @@ class PreserveAttributesExtension extends AbstractTypeExtension
         $dataClass = $form->getParent()->getConfig()->getOption('data_class');
         $property = $form->getName();
 
-        // TODO
-        $innerType = $form->getConfig()->getType()->getInnerType();
-        $type = $form->getConfig()->getType();
-
         if (!$dataClass || !class_exists($dataClass)) {
             return;
         }
