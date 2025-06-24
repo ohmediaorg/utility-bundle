@@ -14,20 +14,18 @@ class PreserveAttributesExtension extends AbstractTypeExtension
     {
     }
 
-    private function setMaxlength(string $dataClass, string $property, FormView $view): void
+    private function getMaxlength(string $dataClass, string $property): ?int
     {
         $maxlengthGuess = $this->guesser->guessMaxLength($dataClass, $property);
-        if ($maxlengthGuess && $maxlengthGuess->getValue()) {
-            $view->vars['attr']['maxlength'] ??= $maxlengthGuess->getValue();
-        }
+
+        return $maxlengthGuess ? $maxlengthGuess->getValue() : null;
     }
 
-    private function setPattern(string $dataClass, string $property, FormView $view): void
+    private function getPattern(string $dataClass, string $property): ?string
     {
         $patternGuess = $this->guesser->guessPattern($dataClass, $property);
-        if ($patternGuess && $patternGuess->getValue()) {
-            $view->vars['attr']['pattern'] ??= $patternGuess->getValue();
-        }
+
+        return $patternGuess ? $patternGuess->getValue() : null;
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options): void
@@ -39,8 +37,21 @@ class PreserveAttributesExtension extends AbstractTypeExtension
             return;
         }
 
-        $this->setMaxlength($dataClass, $property, $view);
-        $this->setPattern($dataClass, $property, $view);
+        if (!isset($view->vars['attr']['maxlength'])) {
+            $maxLength = $this->getMaxlength($dataClass, $property);
+
+            if ($maxLength) {
+                $view->vars['attr']['maxlength'] = $maxLength;
+            }
+        }
+
+        if (!isset($view->vars['attr']['pattern'])) {
+            $pattern = $this->getPattern($dataClass, $property);
+
+            if ($pattern) {
+                $view->vars['attr']['pattern'] = $pattern;
+            }
+        }
     }
 
     public static function getExtendedTypes(): iterable
