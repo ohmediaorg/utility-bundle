@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Validator\ValidatorTypeGuesser;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
-class PreserveAttributesExtension extends AbstractTypeExtension
+class GuessAttributesExtension extends AbstractTypeExtension
 {
     public function __construct(private ValidatorTypeGuesser $guesser)
     {
