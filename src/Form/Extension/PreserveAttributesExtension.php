@@ -14,8 +14,7 @@ class PreserveAttributesExtension extends AbstractTypeExtension
     {
     }
 
-    // TODO types
-    private function setMaxlength($dataClass, $property, $view): void
+    private function setMaxlength(string $dataClass, string $property, FormView $view): void
     {
         $maxlengthGuess = $this->guesser->guessMaxLength($dataClass, $property);
         if ($maxlengthGuess && $maxlengthGuess->getValue()) {
@@ -23,7 +22,7 @@ class PreserveAttributesExtension extends AbstractTypeExtension
         }
     }
 
-    private function setPattern($dataClass, $property, $view): void
+    private function setPattern(string $dataClass, string $property, FormView $view): void
     {
         $patternGuess = $this->guesser->guessPattern($dataClass, $property);
         if ($patternGuess && $patternGuess->getValue()) {
