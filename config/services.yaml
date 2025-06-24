@@ -29,3 +29,7 @@ services:
             -
                 name: 'doctrine.event_listener'
                 event: 'preUpdate'
+
+    OHMedia\UtilityBundle\Form\Extension\PreserveAttributesExtension:
+        autowire: true
+        tags: ['form.type_extension']
