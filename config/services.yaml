@@ -31,6 +31,5 @@ services:
                 event: 'preUpdate'
 
     OHMedia\UtilityBundle\Form\Extension\PreserveAttributesExtension:
-        autowire: true
         tags: ['form.type_extension']
         arguments: ['@form.type_guesser.validator']
