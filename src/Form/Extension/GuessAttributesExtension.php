@@ -14,14 +14,14 @@ class GuessAttributesExtension extends AbstractTypeExtension
     {
     }
 
-    private function getMaxlength(string $dataClass, string $property): ?int
+    private function getMaxlength(string $dataClass, string $property)
     {
         $maxlengthGuess = $this->guesser->guessMaxLength($dataClass, $property);
 
         return $maxlengthGuess ? $maxlengthGuess->getValue() : null;
     }
 
-    private function getPattern(string $dataClass, string $property): ?string
+    private function getPattern(string $dataClass, string $property)
     {
         $patternGuess = $this->guesser->guessPattern($dataClass, $property);
 
