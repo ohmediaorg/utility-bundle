@@ -29,3 +29,7 @@ services:
             -
                 name: 'doctrine.event_listener'
                 event: 'preUpdate'
+
+    OHMedia\UtilityBundle\Form\Extension\GuessAttributesExtension:
+        tags: ['form.type_extension']
+        arguments: ['@form.type_guesser.validator']
