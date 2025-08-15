@@ -15,10 +15,10 @@ class PostalCodeType extends AbstractType
         $builder
             ->addModelTransformer(new CallbackTransformer(
                 function ($postalCode): string {
-                    return strtoupper($postalCode);
+                    return strtoupper((string) $postalCode);
                 },
                 function ($postalCode): string {
-                    return strtoupper($postalCode);
+                    return strtoupper((string) $postalCode);
                 },
             ))
         ;
