@@ -20,7 +20,7 @@ class Phone extends Regex
     ) {
         $options['pattern'] = $options['value'] = '/^\d{3}-?\d{3}-?\d{4}$/';
 
-        parent::__construct($options, $groups, $payload);
+        parent::__construct($pattern, $message, $htmlPattern, $match, $normalizer, $groups, $payload, $options);
     }
 
     public function validatedBy(): string
