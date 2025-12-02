@@ -11,7 +11,7 @@ class RemoveCarriageReturnExtension extends AbstractTypeExtension
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $removeCarriageReturn = function (?string $value): string {
+        $removeCarriageReturn = function (?string $value): ?string {
             if ($value) {
                 $value = str_replace(["\r\n", "\r"], "\n", $value);
             }
