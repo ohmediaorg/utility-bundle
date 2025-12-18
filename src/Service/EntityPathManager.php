@@ -1,0 +1,80 @@
+<?php
+
+namespace OHMedia\UtilityBundle\Service;
+
+class EntityPathManager
+{
+    private array $providers = [];
+
+    public function __construct(
+        private EntityManagerInterface $entityManager,
+    ) {
+    }
+
+    public function addProvider(AbstractEntityPathProvider $provider): void
+    {
+        $this->providers[$provider->getEntityClass()] = $provider;
+    }
+
+    public function getChoices(): array
+    {
+        $choices = [];
+
+        foreach ($this->providers as $entityClass => $provider) {
+            $groupLabel = $provider->getGroupLabel();
+
+            // up to the provider to decide if an entity should be included
+            // (ie. published, not locked, etc.)
+            $entities = $provider->getEntityQueryBuilder()
+                ->getQuery()
+                ->getResult();
+
+            if (!$entities) {
+                continue;
+            }
+
+            $choices[$groupLabel] = [];
+
+            foreach ($entities as $entity) {
+                $id = $entity->getId();
+
+                $label = sprintf(
+                    '%s (ID: %s)',
+                    $provider->getEntityLabel($entity),
+                    $id,
+                );
+
+                // value is like App\Entity\MyEntity:1234
+                // not trying to worry about if the entity exists
+                // or prevent deletion, it's just a link
+                $value = implode(':', [
+                    $entityClass,
+                    $id,
+                ]);
+
+                $choices[$groupLabel][$label] = $value;
+            }
+
+            ksort($choices[$groupLabel]);
+        }
+
+        ksort($choices);
+
+        return $choices;
+    }
+
+    public function getEntityPath(string $entityString): ?string
+    {
+        list($entityClass, $entityId) = explode(':', $entityString);
+
+        $entity = $this->entityManager
+            ->getRepository($entityClass)
+            ->find($entityId);
+
+        if (!$entity) {
+            return null;
+        }
+
+        return $this->providers[$entityClass]->getEntityPath($entity) ?? null;
+    }
+}
