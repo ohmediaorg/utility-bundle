@@ -3,6 +3,7 @@
 namespace OHMedia\UtilityBundle\Form;
 
 use OHMedia\UtilityBundle\Entity\CallToAction;
+use OHMedia\UtilityBundle\Service\EntityPathManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
