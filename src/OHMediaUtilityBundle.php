@@ -27,5 +27,20 @@ class OHMediaUtilityBundle extends AbstractBundle
         $containerBuilder->registerForAutoconfiguration(AbstractEntityPathProvider::class)
             ->addTag('oh_media_utility.entity_path_provider')
         ;
+
+        $this->registerWidget($containerBuilder);
+    }
+
+    /**
+     * Registers the form widget.
+     */
+    protected function registerWidget(ContainerBuilder $containerBuilder)
+    {
+        $resource = '@OHMediaUtility/form/call_to_action_widget.html.twig';
+
+        $containerBuilder->setParameter('twig.form.resources', array_merge(
+            $containerBuilder->getParameter('twig.form.resources'),
+            [$resource]
+        ));
     }
 }

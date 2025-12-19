@@ -1,0 +1,30 @@
+{%- block call_to_action_widget -%}
+  {{ form_widget(form) }}
+
+  {% if form.type is defined %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const typeInternal = '{{ TYPE_INTERNAL }}';
+        const typeExternal = '{{ TYPE_EXTERNAL }}';
+
+        const entity = document.getElementById('{{ form.entity.vars.id }}');
+        const url = document.getElementById('{{ form.url.vars.id }}');
+
+        const form = entity.form;
+
+        const type = form.elements['{{ form.type.vars.full_name }}'];
+
+        function onTypeChange() {
+          const isTypeInternal = typeInternal === type.value;
+          const isTypeExternal = typeExternal === type.value;
+
+          entity.parentNode.style.display = isTypeInternal ? '' : 'none';
+          entity.required = isTypeInternal;
+
+          url.parentNode.style.display = isTypeExternal ? '' : 'none';
+          url.required = isTypeExternal;
+        }
+      });
+    </script>
+  {% endif %}
+{%- endblock -%}
