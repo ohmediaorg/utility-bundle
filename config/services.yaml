@@ -45,3 +45,7 @@ services:
     OHMedia\UtilityBundle\Form\CallToActionType:
         autowire: true
         tags: ["form.type"]
+
+    OHMedia\UtilityBundle\Twig\CallToActionExtension:
+        autowire: true
+        tags: ["twig.extension"]

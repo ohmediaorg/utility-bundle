@@ -2,6 +2,7 @@
 
 namespace OHMedia\UtilityBundle\Twig;
 
+use OHMedia\UtilityBundle\Entity\CallToAction;
 use OHMedia\UtilityBundle\Service\EntityPathManager;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -20,12 +21,18 @@ class CallToActionExtension extends AbstractExtension
         ];
     }
 
-    public function path(CallToAction $callToAction): ?string
+    public function path(?CallToAction $callToAction): ?string
     {
-        if ($callToAction->isTypeExternal()) {
-            return $callToAction->getUrl();
+        if (!$callToAction) {
+            return null;
         }
 
-        return $this->entityPathManager->getEntityPath($callToAction->getEntity());
+        if ($callToAction->isTypeExternal()) {
+            return $callToAction->getUrl();
+        } elseif ($callToAction->isTypeInternal()) {
+            return $this->entityPathManager->getEntityPath($callToAction->getEntity());
+        }
+
+        return null;
     }
 }
