@@ -24,6 +24,12 @@
           url.parentNode.style.display = isTypeExternal ? '' : 'none';
           url.required = isTypeExternal;
         }
+
+        type.forEach(function(radio) {
+          radio.addEventListener('change', onTypeChange);
+        });
+
+        onTypeChange();
       });
     </script>
   {% endif %}
