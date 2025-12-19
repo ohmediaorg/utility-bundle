@@ -6,6 +6,7 @@ use OHMedia\UtilityBundle\Entity\CallToAction;
 use OHMedia\UtilityBundle\Service\EntityPathManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Event\PreSetDataEvent;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -65,6 +66,11 @@ class CallToActionType extends AbstractType
             ]);
 
             $form->add('text');
+
+            $form->add('new_window', CheckboxType::class, [
+                'required' => false,
+                'label' => 'Open this link in a new window',
+            ]);
         });
     }
 
