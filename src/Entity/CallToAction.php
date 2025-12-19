@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace OHMedia\UtilityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use OHMedia\UtilityBundle\Repository\CallToActionRepository;
