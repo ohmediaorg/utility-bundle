@@ -8,6 +8,9 @@ use OHMedia\UtilityBundle\Repository\CallToActionRepository;
 #[ORM\Entity(repositoryClass: CallToActionRepository::class)]
 class CallToAction
 {
+    public const TYPE_EXTERNAL = 'external';
+    public const TYPE_INTERNAL = 'internal';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -43,6 +46,16 @@ class CallToAction
         $this->type = $type;
 
         return $this;
+    }
+
+    public function isTypeExternal(): bool
+    {
+        return self::TYPE_EXTERNAL === $this->type;
+    }
+
+    public function isTypeInternal(): bool
+    {
+        return self::TYPE_INTERNAL === $this->type;
     }
 
     public function getEntity(): ?string

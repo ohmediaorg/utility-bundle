@@ -26,8 +26,8 @@ class CallToActionType extends AbstractType
             $builder->add('type', ChoiceType::class, [
                 'label' => 'Link Type',
                 'choices' => [
-                    'Internal' => 'internal',
-                    'External' => 'external',
+                    'Internal' => CallToAction::TYPE_INTERNAL,
+                    'External' => CallToAction::TYPE_EXTERNAL,
                 ],
             ]);
 
@@ -37,7 +37,7 @@ class CallToActionType extends AbstractType
             ]);
         } else {
             $builder->add('type', HiddenType::class, [
-                'data' => 'external',
+                'data' => CallToAction::TYPE_EXTERNAL,
             ]);
         }
 
