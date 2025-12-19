@@ -48,11 +48,13 @@ class CallToActionType extends AbstractType
                     'label' => 'Internal Resource',
                     'choices' => $entityChoices,
                     'row_attr' => [
-                        'style' => $callToAction->isTypeInternal() ? '' : 'display:none',
+                        'style' => $callToAction && $callToAction->isTypeInternal()
+                            ? ''
+                            : 'display:none',
                     ],
                 ]);
 
-                $showUrl = $callToAction->isTypeExternal();
+                $showUrl = $callToAction && $callToAction->isTypeExternal();
             } else {
                 $form->add('type', HiddenType::class, [
                     'data' => CallToAction::TYPE_EXTERNAL,
