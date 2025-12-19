@@ -41,3 +41,7 @@ services:
         autowire: true
 
     oh_media_utility.entity_path_manager: '@OHMedia\UtilityBundle\Service\EntityPathManager'
+
+    OHMedia\UtilityBundle\Form\CallToActionType:
+        autowire: true
+        tags: ["form.type"]

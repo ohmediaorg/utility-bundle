@@ -1,7 +1,7 @@
 {%- block call_to_action_widget -%}
   {{ form_widget(form) }}
 
-  {% if form.type is defined %}
+  {% if form.entity is defined %}
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const typeInternal = '{{ TYPE_INTERNAL }}';
