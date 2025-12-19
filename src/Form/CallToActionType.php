@@ -52,6 +52,8 @@ class CallToActionType extends AbstractType
                             ? ''
                             : 'display:none',
                     ],
+                    'placeholder' => '- Select -',
+                    'help' => 'The link will not be displayed if the selected resource becomes unavailable to the public (eg. not published, requires login, deleted, etc.).',
                 ]);
 
                 $showUrl = $callToAction && $callToAction->isTypeExternal();
