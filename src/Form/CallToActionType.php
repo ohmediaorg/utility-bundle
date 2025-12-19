@@ -38,13 +38,17 @@ class CallToActionType extends AbstractType
                         'Internal' => CallToAction::TYPE_INTERNAL,
                         'External' => CallToAction::TYPE_EXTERNAL,
                     ],
+                    'expanded' => true,
+                    'row_attr' => [
+                        'class' => 'fieldset-nostyle mb-3',
+                    ],
                 ]);
 
                 $form->add('entity', ChoiceType::class, [
                     'label' => 'Internal Resource',
                     'choices' => $entityChoices,
                     'row_attr' => [
-                        'style' => $callToAction->isTypeInternal() ? '' : 'none',
+                        'style' => $callToAction->isTypeInternal() ? '' : 'display:none',
                     ],
                 ]);
 
@@ -61,7 +65,7 @@ class CallToActionType extends AbstractType
                 'label' => 'External URL',
                 'default_protocol' => null,
                 'row_attr' => [
-                    'style' => $showUrl ? '' : 'none',
+                    'style' => $showUrl ? '' : 'display:none',
                 ],
             ]);
 
