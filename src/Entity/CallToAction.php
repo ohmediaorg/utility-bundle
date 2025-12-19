@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use OHMedia\UtilityBundle\Repository\CallToActionRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CallToActionRepository::class)]
 class CallToAction
@@ -20,12 +21,28 @@ class CallToAction
     private ?string $type = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 255)]
+    #[Assert\When(
+        expression: 'this.isTypeInternal()',
+        constraints: [
+            new Assert\NotBlank(),
+        ],
+    )]
     private ?string $entity = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 255)]
+    #[Assert\When(
+        expression: 'this.isTypeExternal()',
+        constraints: [
+            new Assert\NotBlank(),
+        ],
+    )]
     private ?string $url = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 50)]
     private ?string $text = null;
 
     #[ORM\Column(nullable: true)]
