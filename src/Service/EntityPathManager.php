@@ -18,16 +18,30 @@ class EntityPathManager
         $this->providers[$provider->getEntityClass()] = $provider;
     }
 
-    public function getChoices(): array
+    public function getChoices(?string $selectedEntity): array
     {
         $choices = [];
+
+        if ($selectedEntity) {
+            list($selectedEntityClass, $selectedEntityId)
+                = explode(':', $selectedEntity);
+        } else {
+            $selectedEntityClass = null;
+            $selectedEntityId = null;
+        }
 
         foreach ($this->providers as $entityClass => $provider) {
             $groupLabel = $provider->getGroupLabel();
 
+            if ($selectedEntityClass === $entityClass) {
+                $queryBuilderId = (int) $selectedEntityId;
+            } else {
+                $queryBuilderId = null;
+            }
+
             // up to the provider to decide if an entity should be included
             // (ie. published, not locked, etc.)
-            $entities = $provider->getEntityQueryBuilder()
+            $entities = $provider->getEntityQueryBuilder($queryBuilderId)
                 ->getQuery()
                 ->getResult();
 

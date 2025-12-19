@@ -29,7 +29,9 @@ class CallToActionType extends AbstractType
             $callToAction = $event->getData();
             $form = $event->getForm();
 
-            $entityChoices = $this->entityPathManager->getChoices();
+            $selectedEntity = $callToAction ? $callToAction->getEntity() : null;
+
+            $entityChoices = $this->entityPathManager->getChoices($selectedEntity);
 
             if ($entityChoices) {
                 $form->add('type', ChoiceType::class, [

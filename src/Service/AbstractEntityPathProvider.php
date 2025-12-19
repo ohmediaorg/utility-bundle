@@ -10,7 +10,7 @@ abstract class AbstractEntityPathProvider
 
     abstract public function getGroupLabel(): string;
 
-    abstract public function getEntityQueryBuilder(): QueryBuilder;
+    abstract public function getEntityQueryBuilder(?int $selectedEntityId): QueryBuilder;
 
     abstract public function getEntityPath(mixed $entity): ?string;
 
