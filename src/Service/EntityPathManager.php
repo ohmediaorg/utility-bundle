@@ -2,6 +2,8 @@
 
 namespace OHMedia\UtilityBundle\Service;
 
+use Doctrine\ORM\EntityManagerInterface;
+
 class EntityPathManager
 {
     private array $providers = [];
