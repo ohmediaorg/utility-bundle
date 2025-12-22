@@ -36,3 +36,16 @@ services:
 
     OHMedia\UtilityBundle\Form\Extension\RemoveCarriageReturnExtension:
         tags: ['form.type_extension']
+
+    OHMedia\UtilityBundle\Service\EntityPathManager:
+        autowire: true
+
+    oh_media_utility.entity_path_manager: '@OHMedia\UtilityBundle\Service\EntityPathManager'
+
+    OHMedia\UtilityBundle\Form\CallToActionType:
+        autowire: true
+        tags: ["form.type"]
+
+    OHMedia\UtilityBundle\Twig\CallToActionExtension:
+        autowire: true
+        tags: ["twig.extension"]
