@@ -26,7 +26,12 @@ class CallToActionType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (PreSetDataEvent $event) use ($options) {
+        $required = $options['required'];
+
+        // NOTE: overriding 'label_attr' throughout
+        // so the child fields appear required
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (PreSetDataEvent $event) use ($required) {
             $callToAction = $event->getData();
             $form = $event->getForm();
 
@@ -37,7 +42,7 @@ class CallToActionType extends AbstractType
             if ($entityChoices) {
                 $typeChoices = [];
 
-                if (!$options['required']) {
+                if (!$required) {
                     $typeChoices['None'] = CallToAction::TYPE_NONE;
                 }
 
@@ -51,6 +56,9 @@ class CallToActionType extends AbstractType
                     'row_attr' => [
                         'class' => 'fieldset-nostyle mb-3',
                     ],
+                    'label_attr' => [
+                        'class' => 'required',
+                    ],
                 ]);
 
                 $form->add('entity', ChoiceType::class, [
@@ -63,12 +71,15 @@ class CallToActionType extends AbstractType
                     ],
                     'placeholder' => '- Select -',
                     'help' => 'The link will not be displayed if the selected resource becomes unavailable to the public (eg. not published, requires login, deleted, etc.).',
+                    'label_attr' => [
+                        'class' => 'required',
+                    ],
                 ]);
 
                 $showUrl = $callToAction && $callToAction->isTypeExternal();
 
-                $showOthers = $options['required'] || ($callToAction && !$callToAction->isTypeNone());
-            } elseif (!$options['required']) {
+                $showOthers = $required || ($callToAction && !$callToAction->isTypeNone());
+            } elseif (!$required) {
                 $form->add('type', ChoiceType::class, [
                     'label' => 'Link Type',
                     'choices' => [
@@ -79,11 +90,14 @@ class CallToActionType extends AbstractType
                     'row_attr' => [
                         'class' => 'fieldset-nostyle mb-3',
                     ],
+                    'label_attr' => [
+                        'class' => 'required',
+                    ],
                 ]);
 
                 $showUrl = $callToAction && $callToAction->isTypeExternal();
 
-                $showOthers = $callToAction && !$callToAction->isTypeNone();
+                $showOthers = $callToAction && $callToAction->isTypeExternal();
             } else {
                 $form->add('type', HiddenType::class, [
                     'data' => CallToAction::TYPE_EXTERNAL,
@@ -99,11 +113,17 @@ class CallToActionType extends AbstractType
                 'row_attr' => [
                     'style' => $showUrl ? '' : 'display:none',
                 ],
+                'label_attr' => [
+                    'class' => 'required',
+                ],
             ]);
 
             $form->add('text', TextType::class, [
                 'row_attr' => [
                     'style' => $showOthers ? '' : 'display:none',
+                ],
+                'label_attr' => [
+                    'class' => 'required',
                 ],
             ]);
 
