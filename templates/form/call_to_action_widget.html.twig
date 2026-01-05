@@ -6,9 +6,12 @@
       document.addEventListener('DOMContentLoaded', function() {
         const typeInternal = '{{ TYPE_INTERNAL }}';
         const typeExternal = '{{ TYPE_EXTERNAL }}';
+        const typeNone = '{{ TYPE_NONE }}';
 
         const entity = document.getElementById('{{ form.entity.vars.id }}');
         const url = document.getElementById('{{ form.url.vars.id }}');
+        const text = document.getElementById('{{ form.text.vars.id }}');
+        const newWindow = document.getElementById('{{ form.new_window.vars.id }}');
 
         const form = entity.form;
 
@@ -17,12 +20,18 @@
         function onTypeChange() {
           const isTypeInternal = typeInternal === type.value;
           const isTypeExternal = typeExternal === type.value;
+          const isTypeNone = typeNone === type.value;
 
           entity.parentNode.style.display = isTypeInternal ? '' : 'none';
           entity.required = isTypeInternal;
 
           url.parentNode.style.display = isTypeExternal ? '' : 'none';
           url.required = isTypeExternal;
+
+          text.parentNode.style.display = isTypeNone ? 'none' : '';
+          text.required = !isTypeNone;
+
+          newWindow.parentNode.parentNode.style.display = isTypeNone ? 'none' : '';
         }
 
         type.forEach(function(radio) {

@@ -9,6 +9,7 @@ use Symfony\Component\Form\Event\PreSetDataEvent;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
@@ -25,7 +26,7 @@ class CallToActionType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (PreSetDataEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (PreSetDataEvent $event) use ($options) {
             $callToAction = $event->getData();
             $form = $event->getForm();
 
@@ -34,12 +35,18 @@ class CallToActionType extends AbstractType
             $entityChoices = $this->entityPathManager->getChoices($selectedEntity);
 
             if ($entityChoices) {
+                $typeChoices = [];
+
+                if (!$options['required']) {
+                    $typeChoices['None'] = CallToAction::TYPE_NONE;
+                }
+
+                $typeChoices['Internal'] = CallToAction::TYPE_INTERNAL;
+                $typeChoices['External'] = CallToAction::TYPE_EXTERNAL;
+
                 $form->add('type', ChoiceType::class, [
                     'label' => 'Link Type',
-                    'choices' => [
-                        'Internal' => CallToAction::TYPE_INTERNAL,
-                        'External' => CallToAction::TYPE_EXTERNAL,
-                    ],
+                    'choices' => $typeChoices,
                     'expanded' => true,
                     'row_attr' => [
                         'class' => 'fieldset-nostyle mb-3',
@@ -59,12 +66,31 @@ class CallToActionType extends AbstractType
                 ]);
 
                 $showUrl = $callToAction && $callToAction->isTypeExternal();
+
+                $showOthers = $options['required'] || ($callToAction && !$callToAction->isTypeNone());
+            } elseif (!$options['required']) {
+                $form->add('type', ChoiceType::class, [
+                    'label' => 'Link Type',
+                    'choices' => [
+                        'None' => CallToAction::TYPE_NONE,
+                        'External' => CallToAction::TYPE_EXTERNAL,
+                    ],
+                    'expanded' => true,
+                    'row_attr' => [
+                        'class' => 'fieldset-nostyle mb-3',
+                    ],
+                ]);
+
+                $showUrl = $callToAction && $callToAction->isTypeExternal();
+
+                $showOthers = $callToAction && !$callToAction->isTypeNone();
             } else {
                 $form->add('type', HiddenType::class, [
                     'data' => CallToAction::TYPE_EXTERNAL,
                 ]);
 
                 $showUrl = true;
+                $showOthers = true;
             }
 
             $form->add('url', UrlType::class, [
@@ -75,11 +101,18 @@ class CallToActionType extends AbstractType
                 ],
             ]);
 
-            $form->add('text');
+            $form->add('text', TextType::class, [
+                'row_attr' => [
+                    'style' => $showOthers ? '' : 'display:none',
+                ],
+            ]);
 
             $form->add('new_window', CheckboxType::class, [
                 'required' => false,
                 'label' => 'Open this link in a new window',
+                'row_attr' => [
+                    'style' => $showOthers ? '' : 'display:none',
+                ],
             ]);
         });
     }
@@ -88,6 +121,7 @@ class CallToActionType extends AbstractType
     {
         $view->vars['TYPE_INTERNAL'] = CallToAction::TYPE_INTERNAL;
         $view->vars['TYPE_EXTERNAL'] = CallToAction::TYPE_EXTERNAL;
+        $view->vars['TYPE_NONE'] = CallToAction::TYPE_NONE;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

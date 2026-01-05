@@ -11,6 +11,7 @@ class CallToAction
 {
     public const TYPE_EXTERNAL = 'external';
     public const TYPE_INTERNAL = 'internal';
+    public const TYPE_NONE = 'none';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -74,6 +75,11 @@ class CallToAction
     public function isTypeInternal(): bool
     {
         return self::TYPE_INTERNAL === $this->type;
+    }
+
+    public function isTypeNone(): bool
+    {
+        return self::TYPE_NONE === $this->type;
     }
 
     public function getEntity(): ?string
