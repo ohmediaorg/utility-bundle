@@ -11,7 +11,7 @@ class CallToAction
 {
     public const TYPE_EXTERNAL = 'external';
     public const TYPE_INTERNAL = 'internal';
-    public const TYPE_NONE = 'none';
+    public const TYPE_NONE = '';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,7 +19,7 @@ class CallToAction
     private ?int $id = null;
 
     #[ORM\Column(length: 8)]
-    private ?string $type = null;
+    private ?string $type = self::TYPE_NONE;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 255)]
