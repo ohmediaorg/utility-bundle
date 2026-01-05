@@ -28,6 +28,10 @@
           url.parentNode.style.display = isTypeExternal ? '' : 'none';
           url.required = isTypeExternal;
 
+          if (!isTypeExternal) {
+            url.value = '';
+          }
+
           text.parentNode.style.display = isTypeNone ? 'none' : '';
           text.required = !isTypeNone;
 

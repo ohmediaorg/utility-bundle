@@ -33,11 +33,11 @@ class CallToAction
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 255)]
-    #[Assert\Url]
     #[Assert\When(
         expression: 'this.isTypeExternal()',
         constraints: [
             new Assert\NotBlank(),
+            new Assert\Url(),
         ],
     )]
     private ?string $url = null;
