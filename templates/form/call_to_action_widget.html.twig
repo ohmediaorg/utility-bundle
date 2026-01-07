@@ -1,0 +1,59 @@
+{%- block call_to_action_widget -%}
+  {{ form_widget(form) }}
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const typeInternal = '{{ TYPE_INTERNAL }}';
+      const typeExternal = '{{ TYPE_EXTERNAL }}';
+      const typeNone = '{{ TYPE_NONE }}';
+
+      const text = document.getElementById('{{ form.text.vars.id }}');
+
+      const form = text.form;
+
+      const type = form.elements['{{ form.type.vars.full_name }}'];
+
+      if (!(type instanceof RadioNodeList)) {
+        return;
+      }
+
+      {% if form.entity is defined %}
+      const entity = document.getElementById('{{ form.entity.vars.id }}');
+      {% else %}
+      const entity = null;
+      {% endif %}
+
+      const url = document.getElementById('{{ form.url.vars.id }}');
+      const newWindow = document.getElementById('{{ form.new_window.vars.id }}');
+
+      function onTypeChange() {
+        const isTypeInternal = typeInternal === type.value;
+        const isTypeExternal = typeExternal === type.value;
+        const isTypeNone = typeNone === type.value;
+
+        if (entity) {
+          entity.parentNode.style.display = isTypeInternal ? '' : 'none';
+          entity.required = isTypeInternal;
+        }
+
+        url.parentNode.style.display = isTypeExternal ? '' : 'none';
+        url.required = isTypeExternal;
+
+        if (!isTypeExternal) {
+          url.value = '';
+        }
+
+        text.parentNode.style.display = isTypeNone ? 'none' : '';
+        text.required = !isTypeNone;
+
+        newWindow.parentNode.parentNode.style.display = isTypeNone ? 'none' : '';
+      }
+
+      type.forEach(function(radio) {
+        radio.addEventListener('change', onTypeChange);
+      });
+
+      onTypeChange();
+    });
+  </script>
+{%- endblock -%}
