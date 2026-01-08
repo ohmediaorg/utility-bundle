@@ -128,6 +128,7 @@ class CallToActionType extends AbstractType
                 'label_attr' => [
                     'class' => 'required',
                 ],
+                'empty_data' => '',
             ]);
 
             $form->add('new_window', CheckboxType::class, [

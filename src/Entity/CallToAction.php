@@ -43,9 +43,14 @@ class CallToAction
     private ?string $url = null;
 
     #[ORM\Column(length: 50)]
-    #[Assert\NotBlank]
     #[Assert\Length(max: 50)]
-    private ?string $text = null;
+    #[Assert\When(
+        expression: '!this.isTypeNone()',
+        constraints: [
+            new Assert\NotBlank(),
+        ],
+    )]
+    private ?string $text = '';
 
     #[ORM\Column(nullable: true)]
     private ?bool $new_window = null;
