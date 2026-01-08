@@ -33,7 +33,8 @@
 
         if (entity) {
           entity.parentNode.style.display = isTypeInternal ? '' : 'none';
-          entity.required = isTypeInternal;
+          // NOTE: can't be required because of the select2 JS
+          entity.required = false;
         }
 
         url.parentNode.style.display = isTypeExternal ? '' : 'none';
