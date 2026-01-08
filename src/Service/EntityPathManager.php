@@ -70,8 +70,6 @@ class EntityPathManager
 
                 $choices[$groupLabel][$label] = $value;
             }
-
-            ksort($choices[$groupLabel]);
         }
 
         ksort($choices);
