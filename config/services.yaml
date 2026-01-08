@@ -34,9 +34,6 @@ services:
         tags: ['form.type_extension']
         arguments: ['@form.type_guesser.validator']
 
-    OHMedia\UtilityBundle\Form\Extension\RemoveCarriageReturnExtension:
-        tags: ['form.type_extension']
-
     OHMedia\UtilityBundle\Service\EntityPathManager:
         autowire: true
 
