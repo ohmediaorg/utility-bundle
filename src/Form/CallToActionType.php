@@ -74,6 +74,9 @@ class CallToActionType extends AbstractType
                     'label_attr' => [
                         'class' => 'required',
                     ],
+                    'attr' => [
+                        'class' => 'nice-select2',
+                    ],
                 ]);
 
                 $showUrl = $callToAction && $callToAction->isTypeExternal();
