@@ -81,6 +81,10 @@ class EntityPathManager
     {
         list($entityClass, $entityId) = explode(':', $entityString);
 
+        if (!isset($this->providers[$entityClass])) {
+            return null;
+        }
+
         $entity = $this->entityManager
             ->getRepository($entityClass)
             ->find($entityId);
@@ -89,6 +93,6 @@ class EntityPathManager
             return null;
         }
 
-        return $this->providers[$entityClass]->getEntityPath($entity) ?? null;
+        return $this->providers[$entityClass]->getEntityPath($entity);
     }
 }
