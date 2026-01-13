@@ -10,18 +10,17 @@ services:
             - '../src/OHMediaUtilityBundle.php'
 
     OHMedia\UtilityBundle\EventListener\BlamePrePersist:
-        autowire: true
         tags:
             -
                 name: 'doctrine.event_listener'
                 event: 'prePersist'
 
     OHMedia\UtilityBundle\EventListener\BlamePreUpdate:
-        autowire: true
         tags:
             -
                 name: 'doctrine.event_listener'
                 event: 'preUpdate'
 
-    # alias used in EntityPathPass
-    oh_media_utility.entity_path_manager: '@OHMedia\UtilityBundle\Service\EntityPathManager'
+    OHMedia\UtilityBundle\Form\Extension\GuessAttributesExtension:
+        tags: ['form.type_extension']
+        arguments: ['@form.type_guesser.validator']
