@@ -27,17 +27,18 @@ class CallToActionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $required = $options['required'];
+        $providers = $options['providers'];
 
         // NOTE: overriding 'label_attr' throughout
         // so the child fields appear required
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (PreSetDataEvent $event) use ($required) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (PreSetDataEvent $event) use ($required, $providers) {
             $callToAction = $event->getData();
             $form = $event->getForm();
 
             $selectedEntity = $callToAction ? $callToAction->getEntity() : null;
 
-            $entityChoices = $this->entityPathManager->getChoices($selectedEntity);
+            $entityChoices = $this->entityPathManager->getChoices($selectedEntity, $providers);
 
             if ($entityChoices) {
                 $typeChoices = [];
@@ -152,6 +153,7 @@ class CallToActionType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => CallToAction::class,
+            'providers' => [],
         ]);
     }
 }
