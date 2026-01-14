@@ -65,3 +65,6 @@ There is a filter for shuffling an array:
 
 The `OHMedia\UtilityBundle\Entity\CallToAction` entity can be added to any
 custom entity. It has its own form type: `OHMedia\UtilityBundle\Form\CallToAction`
+
+Utilize the `OHMedia\UtilityBundle\Service\AbstractEntityPathProvider` to hook
+into the built-in entity choice.
