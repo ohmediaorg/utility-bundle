@@ -61,6 +61,12 @@ There is a filter for shuffling an array:
 {% set shuffled = my_array|shuffle %}
 ```
 
+And another for assigning a Twig variable to a JS variable:
+
+```twig
+const js_variable = {{ twig_variable|js }};
+```
+
 ## CallToAction Entity
 
 The `OHMedia\UtilityBundle\Entity\CallToAction` entity can be added to any
