@@ -60,3 +60,8 @@ There is a filter for shuffling an array:
 ```twig
 {% set shuffled = my_array|shuffle %}
 ```
+
+## CallToAction Entity
+
+The `OHMedia\UtilityBundle\Entity\CallToAction` entity can be added to any
+custom entity. It has its own form type: `OHMedia\UtilityBundle\Form\CallToAction`
