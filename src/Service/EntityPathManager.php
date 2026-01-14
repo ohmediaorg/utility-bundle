@@ -18,7 +18,7 @@ class EntityPathManager
         $this->providers[$provider->getEntityClass()] = $provider;
     }
 
-    public function getChoices(?string $selectedEntity): array
+    public function getChoices(?string $selectedEntity, array $providersWhitelist): array
     {
         $choices = [];
 
@@ -30,7 +30,16 @@ class EntityPathManager
             $selectedEntityId = null;
         }
 
+        if (!$providersWhitelist) {
+            // include everything by default
+            $providersWhitelist = array_keys($this->providers);
+        }
+
         foreach ($this->providers as $entityClass => $provider) {
+            if (!in_array($entityClass, $providersWhitelist)) {
+                continue;
+            }
+
             $groupLabel = $provider->getGroupLabel();
 
             if ($selectedEntityClass === $entityClass) {

@@ -1,30 +1,21 @@
 services:
-    OHMedia\UtilityBundle\Service\EntityIdentifier:
+    _defaults:
         autowire: true
+        autoconfigure: true
 
-    OHMedia\UtilityBundle\Service\EntitySlugger:
-        autowire: true
-
-    OHMedia\UtilityBundle\Service\Uniq:
-        ~
-
-    OHMedia\UtilityBundle\Twig\UtilityExtension:
-        autowire: true
-        tags: ["twig.extension"]
-
-    OHMedia\UtilityBundle\Service\Blamer:
-        autowire: true
-        arguments: ["@security.token_storage"]
+    OHMedia\UtilityBundle\:
+        resource: '../src/'
+        exclude:
+            - '../src/Entity/'
+            - '../src/OHMediaUtilityBundle.php'
 
     OHMedia\UtilityBundle\EventListener\BlamePrePersist:
-        autowire: true
         tags:
             -
                 name: 'doctrine.event_listener'
                 event: 'prePersist'
 
     OHMedia\UtilityBundle\EventListener\BlamePreUpdate:
-        autowire: true
         tags:
             -
                 name: 'doctrine.event_listener'
@@ -33,16 +24,3 @@ services:
     OHMedia\UtilityBundle\Form\Extension\GuessAttributesExtension:
         tags: ['form.type_extension']
         arguments: ['@form.type_guesser.validator']
-
-    OHMedia\UtilityBundle\Service\EntityPathManager:
-        autowire: true
-
-    oh_media_utility.entity_path_manager: '@OHMedia\UtilityBundle\Service\EntityPathManager'
-
-    OHMedia\UtilityBundle\Form\CallToActionType:
-        autowire: true
-        tags: ["form.type"]
-
-    OHMedia\UtilityBundle\Twig\CallToActionExtension:
-        autowire: true
-        tags: ["twig.extension"]

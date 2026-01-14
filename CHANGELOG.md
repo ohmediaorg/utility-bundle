@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [[e021e75](https://github.com/ohmediaorg/utility-bundle/commit/e021e7509414a8f48e4ac4737961107808de3485)] - 2026-01-07
+
+### Added
+
+- CallToAction entity with various integrations
+
+### Changed
+
+### Fixed
+
 ## [[818bbc5](https://github.com/ohmediaorg/utility-bundle/commit/818bbc5e37d1b2a55ff81dfa067d06533b57ee60)] - 2025-10-14
 
 ### Added
