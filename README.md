@@ -64,7 +64,10 @@ There is a filter for shuffling an array:
 ## CallToAction Entity
 
 The `OHMedia\UtilityBundle\Entity\CallToAction` entity can be added to any
-custom entity. It has its own form type: `OHMedia\UtilityBundle\Form\CallToAction`
+custom entity. It has its own form type:
+`OHMedia\UtilityBundle\Form\CallToAction`. Setting `'required' => false` on the
+form type will show an option for 'None'.
+
 
 Utilize the `OHMedia\UtilityBundle\Service\AbstractEntityPathProvider` to hook
 into the built-in entity choice.
