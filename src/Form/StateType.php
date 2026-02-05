@@ -11,9 +11,6 @@ class StateType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'attr' => [
-                'class' => 'nice-select2',
-            ],
             'choices' => [
                 'Alabama' => 'AL',
                 'Alaska' => 'AK',

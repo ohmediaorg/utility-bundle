@@ -11,9 +11,6 @@ class ProvinceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'attr' => [
-                'class' => 'nice-select2',
-            ],
             'choices' => [
                 'Alberta' => 'AB',
                 'British Columbia' => 'BC',
