@@ -45,7 +45,7 @@ based on constraints places on the corresponding entity properties
 
 ### Fixed
 
-## [[a305373]https://github.com/ohmediaorg/utility-bundle/commit/a305373d8c52d7921e5fad7deb8e834176f2fdf0] - 2026-02-05
+## [[a305373](https://github.com/ohmediaorg/utility-bundle/commit/a305373d8c52d7921e5fad7deb8e834176f2fdf0)] - 2026-02-05
 
 ### Added
 
