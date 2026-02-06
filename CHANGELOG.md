@@ -44,3 +44,13 @@ based on constraints places on the corresponding entity properties
 ### Changed
 
 ### Fixed
+
+## [[a305373](https://github.com/ohmediaorg/utility-bundle/commit/a305373d8c52d7921e5fad7deb8e834176f2fdf0)] - 2026-02-05
+
+### Added
+
+- ProvinceType and StateType with pre-filled choices
+
+### Changed
+
+### Fixed
