@@ -55,7 +55,7 @@ class CallToActionType extends AbstractType
                     'choices' => $typeChoices,
                     'expanded' => true,
                     'row_attr' => [
-                        'class' => 'fieldset-nostyle form-group',
+                        'class' => 'fieldset-nostyle',
                     ],
                     'label_attr' => [
                         'class' => 'required',
@@ -92,7 +92,7 @@ class CallToActionType extends AbstractType
                     ],
                     'expanded' => true,
                     'row_attr' => [
-                        'class' => 'fieldset-nostyle form-group',
+                        'class' => 'fieldset-nostyle',
                     ],
                     'label_attr' => [
                         'class' => 'required',
