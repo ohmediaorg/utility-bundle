@@ -37,7 +37,7 @@ class CallToAction
         expression: 'this.isTypeExternal()',
         constraints: [
             new Assert\NotBlank(),
-            new Assert\Url(),
+            new Assert\Url(requireTld: true),
         ],
     )]
     private ?string $url = null;
