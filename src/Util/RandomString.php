@@ -11,7 +11,7 @@ class RandomString
      */
     public static function get(
         int $length,
-        callable $verify = null,
+        ?callable $verify = null,
         bool $caseSensitive = true
     ): string {
         if (!$verify) {
