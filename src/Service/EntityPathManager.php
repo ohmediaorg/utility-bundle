@@ -18,7 +18,7 @@ class EntityPathManager
         $this->providers[$provider->getEntityClass()] = $provider;
     }
 
-    public function getChoices(?string $selectedEntity, array $providersWhitelist): array
+    public function getChoices(?string $selectedEntity, ?array $providersWhitelist = null): array
     {
         $choices = [];
 
