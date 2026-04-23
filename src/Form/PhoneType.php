@@ -11,7 +11,7 @@ class PhoneType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'help' => 'Must be in the form <b>306-555-1234</b> or <b>3065551234</b>.',
+            'help' => 'Must be in the form <b><span>306</span>-<span>555</span>-<span>1234</span></b> or <b><span>306</span><span>555</span><span>1234</span></b>.',
             'help_html' => true,
             'attr' => [
                 'pattern' => '\d{3}-?\d{3}-?\d{4}',
