@@ -3,6 +3,7 @@
 namespace OHMedia\UtilityBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Persistence\Proxy;
 use OHMedia\UtilityBundle\Repository\CallToActionRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -54,6 +55,18 @@ class CallToAction
 
     #[ORM\Column(nullable: true)]
     private ?bool $new_window = null;
+
+    public function __clone()
+    {
+        if ($this->id) {
+            if ($this instanceof Proxy && !$this->__isInitialized()) {
+                // Initialize the proxy to load all properties
+                $this->__load();
+            }
+
+            $this->id = null;
+        }
+    }
 
     public function getId(): ?int
     {
