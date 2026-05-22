@@ -27,7 +27,7 @@ class PostalCodeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'help' => 'Must be in the form <b>S4N 6V1</b> or <b>S4N6V1</b>.',
+            'help' => 'Accepted formats: <b>S4N 6V1</b> or <b>S4N6V1</b>.',
             'help_html' => true,
             'attr' => [
                 'pattern' => '[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d',
